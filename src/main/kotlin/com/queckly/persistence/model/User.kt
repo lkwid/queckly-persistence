@@ -1,16 +1,15 @@
 package com.queckly.persistence.model
 
-import com.queckly.app.controller.dto.UserDTO
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
 
-// TODO: try with reactive types
-class User (val oktaId: Long, val firstName: String?, val lastName: String?, val email: String) {
-    companion object {
-        fun convertToUser(userType: UserDTO) = User(
-            oktaId = userType.id,
-            firstName = userType.firstName,
-            lastName = userType.lastName,
-            email = userType.email
-        )
-    }
-}
 
+@Document("user")
+@Suppress("unused")
+class User (
+    @Id val id: Long?,
+    val oktaId: String,
+    val firstName: String?,
+    val lastName: String?,
+    val email: String
+)
