@@ -1,16 +1,30 @@
 package com.queckly.persistence.model
 
-import com.queckly.app.controller.dto.UserDTO
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.index.Indexed
+import org.springframework.data.mongodb.core.mapping.Document
 
-// TODO: try with reactive types
-class User (val oktaId: Long, val firstName: String?, val lastName: String?, val email: String) {
+@Document("user")
+@Suppress("unused")
+class User(
+    @Id val id: Long,
+    val oktaId: String,
+    val firstName: String?,
+    val lastName: String?,
+    @Indexed(unique = true) val email: String,
+    val password: String
+) {
+    constructor(id: Long, oktaId: String, email: String, password: String) : this(
+        id,
+        oktaId,
+        null,
+        null,
+        email,
+        password
+    )
+
     companion object {
-        fun convertToUser(userType: UserDTO) = User(
-            oktaId = userType.id,
-            firstName = userType.firstName,
-            lastName = userType.lastName,
-            email = userType.email
-        )
+        const val SEQUENCE_NAME = "user_sequence"
     }
-}
 
+}
