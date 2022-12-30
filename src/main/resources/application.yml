@@ -5,6 +5,7 @@ spring:
   data:
     mongodb:
       database: queckly
+      auto-index-creation: true
 #      port: 27017
 #      username: admin
 #      password: admin
@@ -14,7 +15,7 @@ spring:
     username: guest
     password: guest
 
-logging:
-  level:
-    org:
-      springframework: INFO
+#logging:
+#  level:
+#    org:
+#      springframework: INFO

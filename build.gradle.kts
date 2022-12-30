@@ -25,11 +25,12 @@ repositories {
 
 dependencies {
 	val loggingVersion: String by project
+	val kotlinxTestVersion: String by project
+	val testContainersMongo: String by project
 
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-amqp")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
-//	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -39,9 +40,9 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
-	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${kotlinxTestVersion}")
 	testImplementation("org.springframework.amqp:spring-rabbit-test")
+	testImplementation("org.testcontainers:mongodb:${testContainersMongo}")
 }
 
 tasks.withType<KotlinCompile> {
